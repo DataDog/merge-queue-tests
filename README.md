@@ -6,4 +6,6 @@ Tests for merge queue and merge freeze automation
 
 Version 2
 
+---
+
 This is a dummy change.
