@@ -2,13 +2,14 @@ name: Check merge freeze
 
 on:
   pull_request:
-    types: [opened, ready_for_review, synchronize, reopened]
+    types: [opened, ready_for_review, synchronize, reopened, labeled, unlabeled]
     branches: [main]
   merge_group:
     types: [checks_requested]
 
 jobs:
   check-merge-freeze:
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'release') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
