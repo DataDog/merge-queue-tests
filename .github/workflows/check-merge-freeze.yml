@@ -8,9 +8,12 @@ on:
     types: [checks_requested]
 
 jobs:
-  release-freeze:
+  check-merge-freeze:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
       - run: ./.github/workflows/scripts/check-merge-freeze.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
