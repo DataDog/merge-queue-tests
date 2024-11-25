@@ -1,0 +1,17 @@
+name: Check merge freeze
+
+on:
+  pull_request:
+    types: [opened, ready_for_review, synchronize, reopened]
+    branches: [main]
+  merge_group:
+    types: [checks_requested]
+
+jobs:
+  release-freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./.github/workflows/scripts/check-merge-freeze.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: DataDog/merge-queue-tests
